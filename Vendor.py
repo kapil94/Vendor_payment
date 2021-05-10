@@ -35,7 +35,9 @@ def sendMail(defaulter):
 	smtpObj.starttls()
 	
 	user_email=input('Enter your email')  # get a sender_mail
+	password = input('Enter your password') #get a user password
 	
+	smtpObj.login(user_email,password)
 	# send an automated reminder mail to all the defaulters.
 	for key in defaulter.keys():
 		
