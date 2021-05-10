@@ -30,13 +30,16 @@ def getDefaulters():
 
 def sendMail(defaulter):
 	
+	smtpObj=smtplib.SMTP('smtp.gmail.com',587)
+	smtpObj.starttls()
 	
-
-
+	user_email=input('Enter your email')
 	
+	
+	for key in defaulter.keys():
+		
+		smtpObj.sendmail(user_email,key,'Subject:Urgent Reminder!!\n Dear vendor,It is to remind you that you not behind your payments from the month of '+defaulter[key][0]+'\n Kindly pay your dues in order to continue further services. Thanks and Regards,Kapil')
+		
 
 getDefaulters()
-
-
-
 sendMail(getDefaulters())        			
