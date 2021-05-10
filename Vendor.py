@@ -44,7 +44,7 @@ def sendMail(defaulter):
 		# send an automated reminder mail to all the defaulters.
 			for key in defaulter.keys():
 
-				smtpObj.sendmail(user_email,key,'Subject:Urgent Reminder!!\n Dear vendor,It is to remind you that you not behind your payments from the month of '+defaulter[key][0]+'\n Kindly pay your dues in order to continue further services. Thanks and Regards,Kapil')
+				smtpObj.sendmail(user_email,key,'Subject:Urgent Reminder!!\n Dear vendor,It is to remind you that you have been behind your payments from the month of '+defaulter[key][0]+'\n Kindly pay your dues in order to continue further services. Thanks and Regards,Kapil')
 		
 			
 	except smtplib.SMTPAuthenticationError:
