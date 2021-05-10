@@ -38,11 +38,18 @@ def sendMail(defaulter):
 	password = input('Enter your password') #get a user password
 	
 	smtpObj.login(user_email,password)
-	# send an automated reminder mail to all the defaulters.
-	for key in defaulter.keys():
-		
-		smtpObj.sendmail(user_email,key,'Subject:Urgent Reminder!!\n Dear vendor,It is to remind you that you not behind your payments from the month of '+defaulter[key][0]+'\n Kindly pay your dues in order to continue further services. Thanks and Regards,Kapil')
-		
+	
+	try:
+		if smtpObj.login(user_email,password)[0]==235:  # To check if sender email and password are correct
+		# send an automated reminder mail to all the defaulters.
+			for key in defaulter.keys():
 
+				smtpObj.sendmail(user_email,key,'Subject:Urgent Reminder!!\n Dear vendor,It is to remind you that you not behind your payments from the month of '+defaulter[key][0]+'\n Kindly pay your dues in order to continue further services. Thanks and Regards,Kapil')
+		
+			
+	except smtplib.SMTPAuthenticationError:
+		
+		print("Please, check sender email and password and Try Again!!")
+	
 getDefaulters()
 sendMail(getDefaulters())        			
